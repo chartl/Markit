@@ -43,3 +43,9 @@ if __name__ == "__main__":
  result = domain.select(query)
  for record in result:
   print(record)
+
+ print("\n\n")
+ delete = raw_input("Would you like to delete domain "+str(domain)+"? ")
+ delete = delete.upper().startswith("Y")
+ if delete:
+  conn.delete_domain(domain)
