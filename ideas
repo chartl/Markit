@@ -1,0 +1,5 @@
+COMMUNICATION
+---
+Amazon SimpleDB to store bookmarks and preferences
+-xx Amazon SQS for message passing - future. SQS would be more for buffering requests to server.
++++ Amazon EC2 instance for request processing and DB management.
