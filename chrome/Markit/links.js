@@ -13,32 +13,87 @@ for (var i = 0; i < contexts.length; i++) {
   console.log("'" + context + "' item: " + id);
 }
 
+chrome.tabs.onUpdated.addListener(tabAuthListener);
+var userFacebookID = null;
+APP_ID = "731455460204887";
+FB_SUCCESS_URL="https://www.facebook.com/connect/login_success.html";
+
+function authenticateUser() {
+    // do something
+    var facebook_auth_url = "https://www.facebook.com/dialog/oauth?client_id=" + APP_ID + "&redirect_uri="+FB_SUCCESS_URL;
+    console.log("Auth URL is:::: "+facebook_auth_url);
+    window.open(facebook_auth_url);
+    var cntr = 0;
+    while ( userFacebookID == null && cntr < 100000 ) {
+        // if still null, pause a moment
+        cntr = cntr + 1;
+    }
+}
+
+function lookupFacebokID(token) {
+  // todo -- look up the username of the individual.
+  // todo -- robustness to when they don't have the app added or the correct permissions.
+  // return token;
+  return "ibeshim";
+}
+
+function tabAuthListener(tabInfo,changeInfo,tabObj) {
+    var url = changeInfo.url;
+    if ( url && url.indexOf(FB_SUCCESS_URL)==0) {
+        console.log("URL is: "+url);
+        var auth_token =  url.split('=')[1].split('#')[0];
+        console.log("Auth token is :::: " + auth_token);
+        userFacebookID = lookupFacebokID(auth_token);
+        console.log("ID token is :::: "+userFacebookID);
+    }
+
+    return "";
+}
+
+function logClickItem(info,tab) {
+    console.log("item " + info.menuItemId + " was clicked");
+    console.log("info: " + JSON.stringify(info));
+    console.log("tab: " + JSON.stringify(tab));
+    // Code created by me. Trying to get destination URL out.
+    console.log("Destination URL: " + info.linkUrl);
+}
+
 // A generic onclick callback function.
 // This function returns the link.
 function genericOnClick(info, tab) {
-  console.log("item " + info.menuItemId + " was clicked");
-  console.log("info: " + JSON.stringify(info));
-  console.log("tab: " + JSON.stringify(tab));
-  // Code created by me. Trying to get destination URL out.
-  console.log("Destination URL: " + info.linkUrl);
+  logClickItem(info,tab);
+
   saveLink(info.linkUrl);
   validateLink(info.linkUrl);
-  var more = [info.linkUrl,JSON.stringify(info)];
+
+  if ( ! userLoggedIn() ) {
+      authenticateUser();
+  }
+  if ( ! userLoggedIn() ) {
+      return; // todo -- this is really a timing issue, the authentication happens but the tab listener isn't processed until after genericOnClick finishes.
+      // todo -- maybe this can't happen in an online fashion?
+  }
+
+  var more = [userFacebookID,info.linkUrl]; // todo -- enable user to use a Markit account if don't want to use FB
   sendLink(more);
   console.log("________________________________________________________________");
   console.log("________________________________________________________________");
 }
 
+function userLoggedIn()  {
+    return userFacebookID != null;
+}
+
 // Array for saving links returned by genericOnClick function
 var links = [];
 function saveLink (linkUrl) {
-  links.push(linkUrl);
+    links.push(linkUrl);
   
-  //Print out all links saved
-  for (var i = 0; i < links.length; i++) {
-  var y = i + 1;
-  console.log(y + ". " + links[i]);
-  }
+    //Print out all links saved
+    for (var i = 0; i < links.length; i++) {
+        var y = i + 1;
+        console.log(y + ". " + links[i]);
+    }
 }
 
 // Conditions under which link is saved
