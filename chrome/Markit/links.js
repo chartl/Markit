@@ -1,6 +1,6 @@
 // Markit
 
-// Create contextual menu item for LINK context type.
+// Create contextual menu item for LINK and IMAGE context type.
 var contexts = ["link","image"];
 for (var i = 0; i < contexts.length; i++) {
   var context = contexts[i];
