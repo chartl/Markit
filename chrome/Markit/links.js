@@ -1,7 +1,7 @@
 // Markit
 
 // Create contextual menu item for LINK context type.
-var contexts = ["link"];
+var contexts = ["link","image"];
 for (var i = 0; i < contexts.length; i++) {
   var context = contexts[i];
   var title = "Test '" + context + "' menu item";
@@ -23,7 +23,8 @@ function genericOnClick(info, tab) {
   console.log("Destination URL: " + info.linkUrl);
   saveLink(info.linkUrl);
   validateLink(info.linkUrl);
-  sendLink();
+  var more = [info.linkUrl,JSON.stringify(info)];
+  sendLink(more);
   console.log("________________________________________________________________");
   console.log("________________________________________________________________");
 }
@@ -77,14 +78,14 @@ function validateLink (link) {
 }
 
 // Send the link to the server
-function sendLink() {
+function sendLink(more) {
   send_link = new XMLHttpRequest ();
-  send_link.open("POST","http://ec2-54-200-44-44.us-west-2.compute.amazonaws.com:8504");
-  send_link.onreadystatechange = function () {
-    console.log("onreadystatechange worked!");
+  send_link.open("POST","http://ec2-54-200-56-45.us-west-2.compute.amazonaws.com:80");
+  send_link.onload = function () {
+    console.log("Loaded! Fuck Yeah!");
   };
-//  send_link.send();
-  console.log("Should have sent shit");
+  send_link.send(more);
+  console.log("Should have sent the SHIT");
 }
 
 
