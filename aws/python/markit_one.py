@@ -1,5 +1,7 @@
 from wsgiref.simple_server import make_server, demo_app
 import boto.sdb
+import traceback
+import sys
 
 def _test_serve_page(env,start_response):
  start_response('200 OK',[('Content-Type','text/html')])
@@ -52,14 +54,28 @@ def _log_payload(payload):
 
 def __db_process(payload,conn,domain,killword):
  _log_payload(payload)
+ if payload == '0':
+  return
  items = payload.split(",")
  user = items[0]
  url = items[1]
+ print(items)
+ print(url)
  user_record = domain.get_item(user)
  if not user_record:
-  domain.put_attributes(user,{'urls':[]})
-  user_record = domain.get_item(user,consistent_read=True)
- user_record['urls'] = user_record['urls'] + [url]
+  try:
+   domain.put_attributes(user,{'urls':['None']}) # todo -- should be able to send an empty list there
+   user_record = domain.get_item(user,consistent_read=True)
+  except Exception, e:
+   exc_type, exc_value, exc_traceback = sys.exc_info()
+   errorText = ""
+   errorText += "".join(traceback.format_exception(exc_type,exc_value,exc_traceback))
+   print(errorText)
+   raise AssertionError(repr(e))
+  
+ user_record['urls'] = map(str,user_record['urls']) + [url] # todo the map here winds up being over the string. Figure out the right way (bookmark limit and empty dict perhaps?) 
+ print(user_record['urls'])
+ user_record.save()
  print(domain.get_item(user,consistent_read=True))
  
 if __name__ == "__main__":
