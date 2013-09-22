@@ -2,9 +2,30 @@
   "name": "Markit",
   "description": "Saves App Store app links",
   "version": "0.1",
-  "permissions": ["contextMenus"],
-  "background": {
-    "scripts": ["links.js"]
+  "permissions": [
+    "contextMenus",
+    "tabs",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "browser_action": {
+    "default_title": "Replace button behavior"
   },
+  "background": {
+    "scripts": [
+      "links.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://itunes.apple.com/*"
+      ],
+      "js": [
+        "modify_itunes.js"
+      ],
+      "all_frames": true
+    }
+  ],
   "manifest_version": 2
 }

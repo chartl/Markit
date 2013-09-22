@@ -26,6 +26,7 @@ function genericOnClick(info, tab) {
   console.log("Destination URL: " + info.linkUrl);
   saveLink(info.linkUrl);
   validateLink(info.linkUrl);
+  sendLink(info.linkUrl);
   console.log("________________________________________________________________");
   console.log("________________________________________________________________");
 }
@@ -78,17 +79,32 @@ function validateLink (link) {
   }
 }
 
+// Send the link to the server
+function sendLink() {
+  send_link = new XMLHttpRequest ();
+  send_link.open("Get","http://ec2-54-200-44-44.us-west-2.compute.amazonaws.com:8504");
+  send_link.onreadystatechange = function () {
+    console.log("onreadystatechange worked!");
+  }
+  send_link.send();
+  console.log("Should have sent shit");
+}
+
+
+// Modifies itunes.apple.com behavior
+// chrome.browserAction.onClicked.addListener(function(tab) {
+//       chrome.tabs.executeScript(null, {Code:
+//          document.onclick = function() {
+//            var Class = document.getElementsByClassName("action view-in-itunes");
+//            var id = document.getElementsByTagsName('a')[0];
+//            console.log("Class is " + Class);
+//            console.log("Class is " + id[0]);
+//        }
+//        })
+//    })
 // This function checks if the link already exists in storage
-
-
-
-
-
-
-// Modify itunes.apple.com
 
 // web-storefront-preview.css
 // #main #content #title a.view-in-itunes span,#main #content #left-stack a.view-in-itunes span{display:block;width:106px;height:23px;margin:0;text-indent:-9999px;background:url(web-storefront/images/viewinitunes_en.png) 0 0 no-repeat}
 
 // need to change the image and the destination URL
-
