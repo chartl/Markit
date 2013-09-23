@@ -15,19 +15,17 @@ for (var i = 0; i < contexts.length; i++) {
 
 chrome.tabs.onUpdated.addListener(tabAuthListener);
 var userFacebookID = null;
-APP_ID = "731455460204887";
+var userLoginCredentials = null;
+
+FB_APP_ID = "731455460204887";
 FB_SUCCESS_URL="https://www.facebook.com/connect/login_success.html";
 
-function authenticateUser() {
+function authenticateUserThroughFacebook() {
     // do something
-    var facebook_auth_url = "https://www.facebook.com/dialog/oauth?client_id=" + APP_ID + "&redirect_uri="+FB_SUCCESS_URL;
+    var facebook_auth_url = "https://www.facebook.com/dialog/oauth?client_id=" + FB_APP_ID + "&redirect_uri="+FB_SUCCESS_URL;
     console.log("Auth URL is:::: "+facebook_auth_url);
     window.open(facebook_auth_url);
     var cntr = 0;
-    while ( userFacebookID == null && cntr < 100000 ) {
-        // if still null, pause a moment
-        cntr = cntr + 1;
-    }
 }
 
 function lookupFacebokID(token) {
@@ -35,6 +33,30 @@ function lookupFacebokID(token) {
   // todo -- robustness to when they don't have the app added or the correct permissions.
   // return token;
   return "ibeshim";
+}
+
+function useFacebookAuth() {
+    return false;
+}
+
+function authenticateUser() {
+    if ( useFacebookAuth() ) {
+        authenticateUserThroughFacebook();
+    } else {
+        popupAuthentication();
+    }
+}
+
+function secureCredentials(uname,passwd) {
+    // ideally a cryptographic hash would sit here like sha2 to take
+    // these data and use as the 'server side' username
+    salted = '####' + uname + '####' + passwd + '####';
+    return salted;
+}
+
+function popupAuthentication() {
+    // not clear what to do
+    userLoginCredentials = secureCredentials("ibeshim","passwd");
 }
 
 function tabAuthListener(tabInfo,changeInfo,tabObj) {
@@ -58,6 +80,11 @@ function logClickItem(info,tab) {
     console.log("Destination URL: " + info.linkUrl);
 }
 
+function getApplicationName(itunesURL) {
+    // todo -- find some way to retrive the app name given this url
+    return "-";
+}
+
 // A generic onclick callback function.
 // This function returns the link.
 function genericOnClick(info, tab) {
@@ -65,6 +92,7 @@ function genericOnClick(info, tab) {
 
   saveLink(info.linkUrl);
   validateLink(info.linkUrl);
+  var appName = getApplicationName(info.linkURL);
 
   if ( ! userLoggedIn() ) {
       authenticateUser();
@@ -73,15 +101,20 @@ function genericOnClick(info, tab) {
       return; // todo -- this is really a timing issue, the authentication happens but the tab listener isn't processed until after genericOnClick finishes.
       // todo -- maybe this can't happen in an online fashion?
   }
-
-  var more = [userFacebookID,info.linkUrl]; // todo -- enable user to use a Markit account if don't want to use FB
+  var credentials;
+  if ( userFacebookID != null ) {
+      credentials = userFacebookID;
+  } else {
+      credentials = userLoginCredentials;
+  }
+  var more = [credentials,appName,info.linkUrl]; // todo -- enable user to use a Markit account if don't want to use FB
   sendLink(more);
   console.log("________________________________________________________________");
   console.log("________________________________________________________________");
 }
 
 function userLoggedIn()  {
-    return userFacebookID != null;
+    return userFacebookID != null || userLoginCredentials != null;
 }
 
 // Array for saving links returned by genericOnClick function
