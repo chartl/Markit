@@ -54,14 +54,14 @@ def _log_payload(payload):
   print(item)
 
 def _init_user(db,username,meta_info=None):
-    default_data = { 'username':username,'signup_date':str(datetime.date),'apps':{'markit':{'app_name':'markit','app_url':'whatever','app_number':1}}}
+    default_data = { 'username':username,'signup_date':str(datetime.date.today()),'apps':{'whatever':{'app_name':'markit','app_url':'whatever','app_number':1,'app_id':'whatever'}}}
     if meta_info:
         for meta_key in meta_info:
             default_data[meta_key]=meta_info[meta_key]
     db.put_attributes(username,default_data)
 
 def _parse_app(app_info,num=1):
-    return {'app_name':app_info[0],'app_url':app_info[1],'app_number':num}
+    return {'app_name':app_info[0],'app_url':app_info[1],'app_number':num,'app_id':app_info[1]} # for now identify apps based on iTunes URL
 
 def __db_process(payload,conn,domain,killword):
  _log_payload(payload)
@@ -84,10 +84,10 @@ def __db_process(payload,conn,domain,killword):
   
  user_apps = eval(str(user_record['apps']))
  # now to add a new app, all the other apps need their numbers incremented
- for app in user_apps:
-     user_apps[app]['app_number']+=1
+ for existing_app in user_apps:
+     user_apps[existing_app]['app_number']+=1
  # now add the new app
- user_apps[app['app_name']]=app
+ user_apps[app['app_id']]=app
  user_record['apps'] = user_apps
  user_record.save()
  print(domain.get_item(user,consistent_read=True))
