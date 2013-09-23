@@ -21,6 +21,14 @@
 		9B8C82F317EF75B800AD0545 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8C82D517EF75B800AD0545 /* UIKit.framework */; };
 		9B8C82FB17EF75B900AD0545 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C82F917EF75B900AD0545 /* InfoPlist.strings */; };
 		9B8C82FD17EF75B900AD0545 /* MarkitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C82FC17EF75B900AD0545 /* MarkitTests.m */; };
+		9BF50D7517EFC42800C7EB2B /* AWSRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF50D7017EFC42800C7EB2B /* AWSRuntime.framework */; };
+		9BF50D7617EFC42800C7EB2B /* AWSSES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF50D7117EFC42800C7EB2B /* AWSSES.framework */; };
+		9BF50D7717EFC42800C7EB2B /* AWSSimpleDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF50D7217EFC42800C7EB2B /* AWSSimpleDB.framework */; };
+		9BF50D7817EFC42900C7EB2B /* AWSiOSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF50D7317EFC42800C7EB2B /* AWSiOSSDK.framework */; };
+		9BF50D7917EFC42900C7EB2B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF50D7417EFC42800C7EB2B /* FacebookSDK.framework */; };
+		9BF50D7B17EFC53500C7EB2B /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF50D7A17EFC53500C7EB2B /* AWSS3.framework */; };
+		9BF50D8217EFCAA000C7EB2B /* AWSSNS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF50D8017EFCAA000C7EB2B /* AWSSNS.framework */; };
+		9BF50D8317EFCAA000C7EB2B /* AWSSQS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF50D8117EFCAA000C7EB2B /* AWSSQS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +61,15 @@
 		9B8C82F817EF75B900AD0545 /* MarkitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MarkitTests-Info.plist"; sourceTree = "<group>"; };
 		9B8C82FA17EF75B900AD0545 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9B8C82FC17EF75B900AD0545 /* MarkitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarkitTests.m; sourceTree = "<group>"; };
+		9BF50D7017EFC42800C7EB2B /* AWSRuntime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSRuntime.framework; path = "../../../AWS SDK/aws-ios-sdk-1.6.1/AWSRuntime.framework"; sourceTree = "<group>"; };
+		9BF50D7117EFC42800C7EB2B /* AWSSES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSSES.framework; path = "../../../AWS SDK/aws-ios-sdk-1.6.1/AWSSES.framework"; sourceTree = "<group>"; };
+		9BF50D7217EFC42800C7EB2B /* AWSSimpleDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSSimpleDB.framework; path = "../../../AWS SDK/aws-ios-sdk-1.6.1/AWSSimpleDB.framework"; sourceTree = "<group>"; };
+		9BF50D7317EFC42800C7EB2B /* AWSiOSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSiOSSDK.framework; path = "../../../AWS SDK/aws-ios-sdk-1.6.1/legacy/AWSiOSSDK.framework"; sourceTree = "<group>"; };
+		9BF50D7417EFC42800C7EB2B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "../../../AWS SDK/aws-ios-sdk-1.6.1/ThirdParty/FacebookSDK.framework"; sourceTree = "<group>"; };
+		9BF50D7A17EFC53500C7EB2B /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = "../../../AWS SDK/aws-ios-sdk-1.6.1/AWSS3.framework"; sourceTree = "<group>"; };
+		9BF50D8017EFCAA000C7EB2B /* AWSSNS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSSNS.framework; sourceTree = "<group>"; };
+		9BF50D8117EFCAA000C7EB2B /* AWSSQS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSSQS.framework; sourceTree = "<group>"; };
+		9BF50D8417EFD21100C7EB2B /* ASIS3BucketObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASIS3BucketObject.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +77,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BF50D8317EFCAA000C7EB2B /* AWSSQS.framework in Frameworks */,
 				9B8C82D417EF75B800AD0545 /* CoreGraphics.framework in Frameworks */,
+				9BF50D8217EFCAA000C7EB2B /* AWSSNS.framework in Frameworks */,
 				9B8C82D617EF75B800AD0545 /* UIKit.framework in Frameworks */,
+				9BF50D7B17EFC53500C7EB2B /* AWSS3.framework in Frameworks */,
+				9BF50D7617EFC42800C7EB2B /* AWSSES.framework in Frameworks */,
 				9B8C82D217EF75B800AD0545 /* Foundation.framework in Frameworks */,
+				9BF50D7717EFC42800C7EB2B /* AWSSimpleDB.framework in Frameworks */,
+				9BF50D7917EFC42900C7EB2B /* FacebookSDK.framework in Frameworks */,
+				9BF50D7817EFC42900C7EB2B /* AWSiOSSDK.framework in Frameworks */,
+				9BF50D7517EFC42800C7EB2B /* AWSRuntime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +126,14 @@
 		9B8C82D017EF75B800AD0545 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9BF50D8017EFCAA000C7EB2B /* AWSSNS.framework */,
+				9BF50D8117EFCAA000C7EB2B /* AWSSQS.framework */,
+				9BF50D7A17EFC53500C7EB2B /* AWSS3.framework */,
+				9BF50D7017EFC42800C7EB2B /* AWSRuntime.framework */,
+				9BF50D7117EFC42800C7EB2B /* AWSSES.framework */,
+				9BF50D7217EFC42800C7EB2B /* AWSSimpleDB.framework */,
+				9BF50D7317EFC42800C7EB2B /* AWSiOSSDK.framework */,
+				9BF50D7417EFC42800C7EB2B /* FacebookSDK.framework */,
 				9B8C82D117EF75B800AD0545 /* Foundation.framework */,
 				9B8C82D317EF75B800AD0545 /* CoreGraphics.framework */,
 				9B8C82D517EF75B800AD0545 /* UIKit.framework */,
@@ -117,6 +150,7 @@
 				9B8C82E317EF75B800AD0545 /* Main.storyboard */,
 				9B8C82E617EF75B800AD0545 /* MarkitViewController.h */,
 				9B8C82E717EF75B800AD0545 /* MarkitViewController.m */,
+				9BF50D8417EFD21100C7EB2B /* ASIS3BucketObject.h */,
 				9B8C82E917EF75B800AD0545 /* Images.xcassets */,
 				9B8C82D817EF75B800AD0545 /* Supporting Files */,
 			);
@@ -379,6 +413,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/iliasbeshimov/Downloads/aws-ios-sdk-1.6.1",
+					"/Users/iliasbeshimov/Downloads/aws-ios-sdk-1.6.1/ThirdParty",
+					"/Users/iliasbeshimov/Downloads/aws-ios-sdk-1.6.1/legacy",
+					"/Users/iliasbeshimov/Documents/Personal/AWS\\ SDK/aws-ios-sdk-1.6.1",
+					"/Users/iliasbeshimov/Documents/Personal/AWS\\ SDK/aws-ios-sdk-1.6.1/legacy",
+					"/Users/iliasbeshimov/Documents/Personal/AWS\\ SDK/aws-ios-sdk-1.6.1/ThirdParty",
+					/Users/iliasbeshimov/Documents/Personal/Markit/iphone_app/Markit,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Markit/Markit-Prefix.pch";
 				INFOPLIST_FILE = "Markit/Markit-Info.plist";
@@ -392,6 +436,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/iliasbeshimov/Downloads/aws-ios-sdk-1.6.1",
+					"/Users/iliasbeshimov/Downloads/aws-ios-sdk-1.6.1/ThirdParty",
+					"/Users/iliasbeshimov/Downloads/aws-ios-sdk-1.6.1/legacy",
+					"/Users/iliasbeshimov/Documents/Personal/AWS\\ SDK/aws-ios-sdk-1.6.1",
+					"/Users/iliasbeshimov/Documents/Personal/AWS\\ SDK/aws-ios-sdk-1.6.1/legacy",
+					"/Users/iliasbeshimov/Documents/Personal/AWS\\ SDK/aws-ios-sdk-1.6.1/ThirdParty",
+					/Users/iliasbeshimov/Documents/Personal/Markit/iphone_app/Markit,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Markit/Markit-Prefix.pch";
 				INFOPLIST_FILE = "Markit/Markit-Info.plist";
@@ -461,6 +515,7 @@
 				9B8C830217EF75B900AD0545 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9B8C830317EF75B900AD0545 /* Build configuration list for PBXNativeTarget "MarkitTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +524,7 @@
 				9B8C830517EF75B900AD0545 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

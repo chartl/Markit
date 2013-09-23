@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>48C6BA70-F2BE-4167-89C0-D35AD3D3DDA7</string>
+	<string>0740B14D-7521-4680-B12F-EE2ED17C0678</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Markit</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,7 +14,7 @@
 		<string>https://github.com/chartl/Markit.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>iphone app/Markit/Markit.xcodeproj/project.xcworkspace</string>
+	<string>iphone_app/Markit/Markit.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>786956DB-59F1-4405-94E6-3E4856411919</key>
