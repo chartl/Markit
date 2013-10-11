@@ -2,7 +2,7 @@
 //  MasterViewController.h
 //  Markit
 //
-//  Created by Christopher Hartl on 10/11/13.
+//  Created by the Markit team on 10/11/13.
 //  Copyright (c) 2013 Markit. All rights reserved.
 //
 
@@ -14,5 +14,6 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong) NSMutableArray *bookmarks;
 
 @end

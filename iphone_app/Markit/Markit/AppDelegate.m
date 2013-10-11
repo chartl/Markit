@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  Markit
 //
-//  Created by Christopher Hartl on 10/11/13.
+//  Created by the Markit team on 10/11/13.
 //  Copyright (c) 2013 Markit. All rights reserved.
 //
 
@@ -16,12 +16,22 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+NSMutableArray* getBookmarks(NSDictionary* options) {
+    NSMutableArray* myArray;
+    NSString *url1 = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=533451786&mt=8";
+    NSString *url2 = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=447188370&mt=8";
+    NSString *url3 = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=525818839&mt=8";
+    myArray = [NSMutableArray arrayWithObjects: url1,url2,url3,nil];
+    return myArray;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     MasterViewController *controller = (MasterViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
+    controller.bookmarks = getBookmarks(launchOptions);
     return YES;
 }
 							

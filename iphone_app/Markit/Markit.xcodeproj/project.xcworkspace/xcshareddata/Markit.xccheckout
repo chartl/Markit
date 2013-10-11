@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>31738136-3F55-4787-AC25-73A968AAA15A</string>
+	<string>43CF2772-4C7B-4F03-80D3-5168B1E9EB91</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Markit</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>3BEA2B7A-EB58-4F12-8EEB-3F34B99A89CF</key>
+		<key>786956DB-59F1-4405-94E6-3E4856411919</key>
 		<string>https://github.com/chartl/Markit.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>iphone_app/Markit/Markit/Markit.xcodeproj/project.xcworkspace</string>
+	<string>iphone_app/Markit/Markit.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>3BEA2B7A-EB58-4F12-8EEB-3F34B99A89CF</key>
-		<string>../../../../..</string>
+		<key>786956DB-59F1-4405-94E6-3E4856411919</key>
+		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/chartl/Markit.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>3BEA2B7A-EB58-4F12-8EEB-3F34B99A89CF</string>
+	<string>786956DB-59F1-4405-94E6-3E4856411919</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3BEA2B7A-EB58-4F12-8EEB-3F34B99A89CF</string>
+			<string>786956DB-59F1-4405-94E6-3E4856411919</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Markit</string>
 		</dict>
