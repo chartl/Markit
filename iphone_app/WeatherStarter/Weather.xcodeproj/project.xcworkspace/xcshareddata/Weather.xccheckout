@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D6F6F429-7440-4349-B2D2-0CB463F32A81</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Weather</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3BEA2B7A-EB58-4F12-8EEB-3F34B99A89CF</key>
+		<string>https://github.com/chartl/Markit.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iphone_app/WeatherStarter/Weather.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3BEA2B7A-EB58-4F12-8EEB-3F34B99A89CF</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/chartl/Markit.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3BEA2B7A-EB58-4F12-8EEB-3F34B99A89CF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3BEA2B7A-EB58-4F12-8EEB-3F34B99A89CF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Markit</string>
+		</dict>
+	</array>
+</dict>
+</plist>
