@@ -101,20 +101,32 @@
 {
 }
 
+ NSArray *getDebugTable()
+{
+    NSString *url1 = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=533451786&mt=8";
+    NSString *url2 = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=447188370&mt=8";
+    NSString *url3 = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=525818839&mt=8";
+    
+    NSArray *myArray = [NSArray arrayWithObjects:url1,url2,url3,nil];
+    
+    return myArray;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return [getDebugTable() count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"%s\n",indexPath.debugDescription);
     static NSString *CellIdentifier = @"WeatherCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     

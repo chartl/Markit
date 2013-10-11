@@ -18,4 +18,6 @@
 - (IBAction)httpClientTapped:(id)sender;
 - (IBAction)apiTapped:(id)sender;
 
+NSArray *getDebugTable();
+
 @end
