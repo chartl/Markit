@@ -49,12 +49,10 @@ def _serve_db_get(env,start_response):
     # the iPhone app makes http get requests, want to follow-up on the request and serve the data back
     try:
         _post_size = int(env['CONTENT_LENGTH']) if env['CONTENT_LENGTH'] else 0
-        _post_body = env['wsgi.input'].read(_post_size)
     except TypeError,ValueError:
         _post_body = '0'
     ## now process the body
-
-
+    return "Received your shit!"
 
 def _serve_db_post(env,start_response):
  global db_con,db_domain,db_kill
