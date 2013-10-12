@@ -53,7 +53,7 @@ def _serve_db_get(env,start_response):
         _post_body = '0'
     ## now process the body
     start_response('200 OK',[('Content-Type','text')])
-    return "Received your shit!"
+    return ["Received your shit!"]
 
 def _serve_db_post(env,start_response):
  global db_con,db_domain,db_kill
