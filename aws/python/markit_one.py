@@ -38,12 +38,15 @@ def _init_db(settings="/home/ec2-user/serversettings.cfg"):
 
 def _serve_db(env,start_response):
     global db_con,db_domain,db_kill
+    body = []
     if ( env['REQUEST_METHOD']=='POST' ):
-        return _serve_db_post(env,start_response)
+        body= _serve_db_post(env,start_response)
     elif ( env['REQUEST_METHOD'] == 'GET' ):
-        return _serve_db_get(env,start_response)
-    start_response('401 Bad request',[('Content-Type','text/html')])
-    return []
+        body= _serve_db_get(env,start_response)
+    if ( not body ):
+   	start_response('401 Bad request',[('Content-Type','text/html')])
+    print body
+    return body
 
 def _serve_db_get(env,start_response):
     # the iPhone app makes http get requests, want to follow-up on the request and serve the data back
@@ -55,7 +58,7 @@ def _serve_db_get(env,start_response):
     start_response('200 OK',[('Content-Type','text/plain')])
     h = env.items()
     h.sort()
-    retVal = map(lambda a,b: str(a)+'='+str(b),h)
+    retVal = map(lambda q: str(q[0])+'='+str(q[1]),h)
     retVal.append("Received your shit!")
     return ["Received your shit!"]
 
