@@ -63,7 +63,7 @@ def _serve_db_post(env,start_response):
  response_body = []
  if ( env['REQUEST_METHOD'] == 'POST' ):
   try:
-   _post_size = int(env['CONTENT_LENGTH'])
+   _post_size = int(env['CONTENT_LENGTH']) if env['CONTENT_LENGTH'] != '' else 0
    _post_body = env['wsgi.input'].read(_post_size)
   except TypeError,ValueError:
    _post_body = '0'
