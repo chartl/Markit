@@ -52,7 +52,11 @@ def _serve_db_get(env,start_response):
     except TypeError,ValueError:
         _post_body = '0'
     ## now process the body
-    start_response('200 OK',[('Content-Type','text')])
+    start_response('200 OK',[('Content-Type','text/plain')])
+    h = env.items()
+    h.sort()
+    retVal = map(lambda a,b: str(a)+'='+str(b),h)
+    retVal.append("Received your shit!")
     return ["Received your shit!"]
 
 def _serve_db_post(env,start_response):
