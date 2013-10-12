@@ -52,7 +52,7 @@ NSMutableArray* getBookmarks(NSDictionary* options) {
     if (theConnection) {
         // Create the NSMutableData to hold the received data.
         // receivedData is an instance variable declared elsewhere.
-        //receivedData = [NSMutableData data];
+        _receivedData = [NSMutableData data];
         NSLog(@"Connection was established");
     } else {
         NSLog(@"Connection fucking failed");
