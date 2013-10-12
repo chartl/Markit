@@ -4,6 +4,10 @@ import traceback
 import sys
 import datetime
 
+DEFAULT_GET_RESPONSE_DATA = ["(Bad Piggies,533451786,http://a234.phobos.apple.com/us/r30/Purple4/v4/cf/13/d9/cf13d998-fb0e-5598-48c2-3f2c4dca19ea/Icon.png)",
+                         "(NPR News,324906251,http://a124.phobos.apple.com/us/r30/Purple/v4/bd/df/ff/bddfff03-7f80-eba3-b47a-0be4a305eacd/icon.png)",
+                         "(Wordly - The word game,622768071,http://a568.phobos.apple.com/us/r30/Purple4/v4/65/54/69/6554690f-aad7-b6ca-b6ad-139b6ebed3b0/Icon.png)"]
+
 def _test_serve_page(env,start_response):
  start_response('200 OK',[('Content-Type','text/html')])
  response_body = open("foo.html").readlines()
@@ -59,8 +63,8 @@ def _serve_db_get(env,start_response):
     h = env.items()
     h.sort()
     retVal = map(lambda q: str(q[0])+'='+str(q[1]),h)
-    retVal.append("Received your shit!")
-    return ["Received your shit!"]
+    retVal += DEFAULT_GET_RESPONSE_DATA
+    return retVal
 
 def _serve_db_post(env,start_response):
  global db_con,db_domain,db_kill
