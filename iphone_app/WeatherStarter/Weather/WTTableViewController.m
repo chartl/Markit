@@ -121,7 +121,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+<<<<<<< Updated upstream
     return [getDebugTable() count];
+=======
+    
+    return 0;
+>>>>>>> Stashed changes
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

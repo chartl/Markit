@@ -16,6 +16,8 @@
 
 @implementation WeatherAnimationViewController
 
+@synthesize data = _data;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,6 +31,7 @@
 {
     [super viewDidLoad];
     self.navigationController.toolbarHidden = NO;
+    self.title = @"URLs";
 	// Do any additional setup after loading the view.
 }
 

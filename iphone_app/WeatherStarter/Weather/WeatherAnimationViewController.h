@@ -21,5 +21,5 @@
 -(void)start:(NSString *)type;
 -(void)stop;
 
-
+@property (strong) NSMutableArray *urls;
 @end

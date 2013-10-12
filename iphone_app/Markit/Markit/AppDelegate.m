@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <Foundation/Foundation.h>
 
 #import "MasterViewController.h"
 
@@ -15,6 +16,8 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize receivedData = _receivedData;
+@synthesize theConnection = _theConnection;
 
 NSMutableArray* getBookmarks(NSDictionary* options) {
     NSMutableArray* myArray;
@@ -32,6 +35,31 @@ NSMutableArray* getBookmarks(NSDictionary* options) {
     MasterViewController *controller = (MasterViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
     controller.bookmarks = getBookmarks(launchOptions);
+    
+    
+    // ESTABLISHING CONNECTION WITH SERVER
+    static NSURLRequest *theRequest = nil;
+    if (theRequest == nil) {
+        theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://ec2-54-200-16-176.us-west-2.compute.amazonaws.com:80/"]
+                                      cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                  timeoutInterval:60.0];
+    };
+    
+    // create the connection with the request
+    // and start loading the data
+    
+    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    if (theConnection) {
+        // Create the NSMutableData to hold the received data.
+        // receivedData is an instance variable declared elsewhere.
+        //receivedData = [NSMutableData data];
+        NSLog(@"Connection was established");
+    } else {
+        NSLog(@"Connection fucking failed");
+    };
+    
+    
+    
     return YES;
 }
 							
@@ -158,4 +186,55 @@ NSMutableArray* getBookmarks(NSDictionary* options) {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-@end
+
+//  Commnicate with the server
+
+
+
+// 2
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    // This method is called when the server has determined that it
+    // has enough information to create the NSURLResponse.
+    
+    // It can be called multiple times, for example in the case of a
+    // redirect, so each time we reset the data.
+    
+    // receivedData is an instance variable declared elsewhere.
+    NSLog(@"didReceiveResponse worked!");
+    //[_receivedData setLength:0];
+}
+
+// 3
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    // Append the new data to receivedData.
+    // receivedData is an instance variable declared elsewhere.
+    NSLog(@"didReceiveData worked!");
+}
+
+// 4
+- (void)connection:(NSURLConnection *)connection
+  didFailWithError:(NSError *)error
+{
+    // release the connection, and the data object
+    // receivedData is declared as a method instance elsewhere
+    
+    // inform the user
+    NSLog(@"Connection failed! Error - %@ %@",
+          [error localizedDescription],
+          [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
+}
+// 5
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    // do something with the data
+    // receivedData is declared as a method instance elsewhere
+    NSLog(@"Succeeded! Received XXXXXX bytes of data");
+    
+    // release the connection, and the data object
+}
+
+
+@end;
