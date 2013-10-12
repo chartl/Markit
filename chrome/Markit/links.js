@@ -56,7 +56,7 @@ function secureCredentials(uname,passwd) {
 
 function popupAuthentication() {
     // not clear what to do
-    userLoginCredentials = secureCredentials("ibeshim","passwd");
+    userLoginCredentials = secureCredentials("beshimov","passwd");
 }
 
 function tabAuthListener(tabInfo,changeInfo,tabObj) {
@@ -168,7 +168,7 @@ function validateLink (link) {
 // Send the link to the server
 function sendLink(more) {
   send_link = new XMLHttpRequest ();
-  send_link.open("POST","http://ec2-54-200-56-45.us-west-2.compute.amazonaws.com:80");
+  send_link.open("POST","http://ec2-54-200-16-176.us-west-2.compute.amazonaws.com:80");
   send_link.onload = function () {
     console.log("Loaded! Fuck Yeah!");
   };

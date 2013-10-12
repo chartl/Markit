@@ -15,6 +15,10 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (strong) NSURLRequest *theRequest;
+@property (strong) NSURLConnection *theConnection;
+@property (strong) NSMutableArray *receivedData;
+
 
 NSMutableArray *getBookmarks(NSDictionary* options);
 

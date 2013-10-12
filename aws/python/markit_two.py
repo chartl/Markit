@@ -16,7 +16,7 @@ def _test_serve_page(env,start_response):
   except TypeError,ValueError:
    _post_body = '0'
   print str(_post_body)
- else (method == 'GET')
+ else ( method == 'GET' ):
   send_array = ["YOU NOW HAVE DATA"]
  return response_body
 
