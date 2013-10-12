@@ -36,6 +36,27 @@ def _init_db(settings="/home/ec2-user/serversettings.cfg"):
  domain = connection.get_domain(db_settings['domain'])
  return connection,domain,db_settings['kill_command']
 
+def _serve_db(env,start_response):
+    global db_con,db_domain,db_kill
+    if ( env['REQUEST_METHOD']=='POST' ):
+        return _serve_db_post(env,start_response)
+    elif ( env['REQUEST_METHOD'] == 'GET' ):
+        return _serve_db_get(env,start_response)
+    start_response('401 Bad request',[('Content-Type','text/html')])
+    return []
+
+def _serve_db_get(env,start_response):
+    # the iPhone app makes http get requests, want to follow-up on the request and serve the data back
+    try:
+        _post_size = int(env['CONTENT_LENGTH'])
+        _post_body = env['wgsi.input'].read(_post_size)
+    except TypeError,ValueError:
+        _post_body = '0'
+    ## now process the body
+
+
+
+
 def _serve_db_post(env,start_response):
  global db_con,db_domain,db_kill
  start_response('204 No Content',[('Content-Type','text/html')])
@@ -46,7 +67,7 @@ def _serve_db_post(env,start_response):
    _post_body = env['wsgi.input'].read(_post_size)
   except TypeError,ValueError:
    _post_body = '0'
-  __db_process(_post_body,db_con,db_domain,db_kill)
+  __db_process_post(_post_body,db_con,db_domain,db_kill)
  return response_body
 
 def _log_payload(payload):
@@ -63,7 +84,7 @@ def _init_user(db,username,meta_info=None):
 def _parse_app(app_info,num=1):
     return {'app_name':app_info[0],'app_url':app_info[1],'app_number':num,'app_id':app_info[1]} # for now identify apps based on iTunes URL
 
-def __db_process(payload,conn,domain,killword):
+def __db_process_post(payload,conn,domain,killword):
  _log_payload(payload)
  if payload == '0':
   return
@@ -95,7 +116,7 @@ def __db_process(payload,conn,domain,killword):
 if __name__ == "__main__":
  global db_con,db_domain,db_kill
  db_con,db_domain,db_kill = _init_db()
- httpd = make_server('',80,_serve_db_post)
+ httpd = make_server('',80,_serve_db)
  print "Serving HTTP on port 5804"
 
  httpd.serve_forever()
