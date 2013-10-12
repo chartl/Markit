@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WTTableViewController : UITableViewController
+@interface WTTableViewController : UITableViewController<NSXMLParserDelegate, CLLocationManagerDelegate, UIActionSheetDelegate>
 
 - (IBAction)clear:(id)sender;
 

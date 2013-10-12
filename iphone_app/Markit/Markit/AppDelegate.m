@@ -158,4 +158,17 @@ NSMutableArray* getBookmarks(NSDictionary* options) {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+//  Commnicate with the server
+
+- (IBAction)grabURL:(id)sender
+{
+    NSURL *url = [NSURL URLWithString:@"http://allseeing-i.com"];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request startSynchronous];
+    NSError *error = [request error];
+    if (!error) {
+        NSString *response = [request responseString];
+    }
+}
+
 @end
