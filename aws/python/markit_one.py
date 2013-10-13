@@ -3,6 +3,7 @@ import boto.sdb
 import traceback
 import sys
 import datetime
+import appresolve
 
 DEFAULT_GET_RESPONSE_DATA = ["(Bad Piggies,533451786,http://a234.phobos.apple.com/us/r30/Purple4/v4/cf/13/d9/cf13d998-fb0e-5598-48c2-3f2c4dca19ea/Icon.png)",
                          "(NPR News,324906251,http://a124.phobos.apple.com/us/r30/Purple/v4/bd/df/ff/bddfff03-7f80-eba3-b47a-0be4a305eacd/icon.png)",
@@ -59,12 +60,42 @@ def _serve_db_get(env,start_response):
     except TypeError,ValueError:
         _post_body = '0'
     ## now process the body
-    start_response('200 OK',[('Content-Type','text/plain')])
-    h = env.items()
-    h.sort()
-    retVal = map(lambda q: str(q[0])+'='+str(q[1]),h)
-    retVal += DEFAULT_GET_RESPONSE_DATA
+    do_lookup = _validate_query(env['QUERY_STRING'])
+    if do_lookup:
+        start_response('200 OK',[('Content-Type','text/plain')])
+        retVal = _lookup_bookmarks(env['QUERY_STRING'])
+    else:
+        start_response('406 Not Acceptable',[('Content-Type','text/plain')])
+        retVal = ["Error: Invalid query "+env['QUERY_STRING']]
     return retVal
+
+def _validate_query(query):
+    # first verify that the query has the proper prefix
+    ## no proper prefix defined yet -- todo
+    # ensure that the id is actually in the server
+    global db_con, db_domain, db_kill
+    userid = query
+    if ( db_domain.get_item(userid) ):
+        return True
+    elif (userid == db_kill):
+        import sys
+        sys.exit(0)
+    return False
+
+
+def _lookup_bookmarks(query):
+    global db_con,db_domain
+    # for each url stored in the database, resolve it and send the string back
+    username = query
+    user_record = db_domain.get_item(username,consistent_read=True)
+    user_apps = eval(str(user_record['apps']))
+    resolved = []
+    for app in eval(user_apps):
+        resolved_app = appresolve.resolve(app)
+        # resolved_app is the id, name, description, and icon; return everything but the description
+        if resolved_app:
+         resolved.append((resolved_app[0],resolved_app[1],resolved_app[3]))
+    return map(str,resolved)
 
 def _serve_db_post(env,start_response):
  global db_con,db_domain,db_kill

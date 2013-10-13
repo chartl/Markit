@@ -63,7 +63,7 @@ def _lookup_info(appID):
     if processed_info['resultCount'] == 0:
         return None
     info = processed_info['results'][0]
-    return (info['trackCensoredName'],info['description'],info['artworkUrl60'])
+    return (appID,info['trackCensoredName'],info['description'],info['artworkUrl60'])
 
 
 def _strip_nonstring_newlines(string):
