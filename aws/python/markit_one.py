@@ -117,7 +117,8 @@ def _serve_db_post(env,start_response):
 
 def _log_payload(payload):
  for item in payload.split(","):
-  print(item)
+  #print(item)
+  pass
 
 def _init_user(db,username):
     default_data = { 'username':username,'signup_date':str(datetime.date.today()),'apps':'' }
@@ -147,7 +148,7 @@ def __db_process_post(payload,conn,domain,killword):
    print(errorText)
    raise AssertionError(repr(e))
   
- user_apps = str(user_record['apps']).split(",")
+ user_apps = str(user_record['apps']).split(",")  if str(user_record['apps']) else []
  if ( app not in set(user_apps) ):
     user_apps.append(app)
  user_record['apps'] = ",".join(user_apps)
