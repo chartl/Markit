@@ -119,11 +119,8 @@ def _log_payload(payload):
  for item in payload.split(","):
   print(item)
 
-def _init_user(db,username,meta_info=None):
+def _init_user(db,username):
     default_data = { 'username':username,'signup_date':str(datetime.date.today()),'apps':'' }
-    if meta_info:
-        for meta_key in meta_info:
-            default_data[meta_key]=meta_info[meta_key]
     db.put_attributes(username,default_data)
 
 def _parse_app(app_info):
