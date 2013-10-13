@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 #import "AppDelegate.h"
+#import "MarkitApp.h"
 
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+        return UIApplicationMain(argc, argv, NSStringFromClass([MarkitApp class]), NSStringFromClass([AppDelegate class]));
     }
 }

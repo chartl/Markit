@@ -65,6 +65,7 @@
 		4D7107C41808B709003CCC3A /* MarkitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MarkitTests-Info.plist"; sourceTree = "<group>"; };
 		4D7107C61808B70A003CCC3A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4D7107C81808B70A003CCC3A /* MarkitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarkitTests.m; sourceTree = "<group>"; };
+		4DC0821F180A62C5004E0DBE /* MarkitApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarkitApp.h; sourceTree = "<group>"; };
 		9B9C60C41808C18E00A762E0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		9B9C60C61808C19700A762E0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9B9C60C81808C1A000A762E0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -147,6 +148,7 @@
 				4D7107AF1808B709003CCC3A /* MasterViewController.m */,
 				4D7107B11808B709003CCC3A /* DetailViewController.h */,
 				4D7107B21808B709003CCC3A /* DetailViewController.m */,
+				4DC0821F180A62C5004E0DBE /* MarkitApp.h */,
 				4D7107B41808B709003CCC3A /* Images.xcassets */,
 				4D7107AB1808B709003CCC3A /* Markit.xcdatamodeld */,
 				4D71079D1808B709003CCC3A /* Supporting Files */,
