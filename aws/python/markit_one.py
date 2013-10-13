@@ -135,8 +135,7 @@ def __db_process_post(payload,conn,domain,killword):
   return
  items = payload.split(",")
  user = items.pop(0)
- print("app item 0 = %s " % (items[0]))
- app = _parse_app(items[0])
+ app = _parse_app(items[1])
  if not app:
      return ["Invalid app url: "+items[0]]
  user_record = domain.get_item(user)
