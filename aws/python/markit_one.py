@@ -127,7 +127,7 @@ def _init_user(db,username,meta_info=None):
     db.put_attributes(username,default_data)
 
 def _parse_app(app_info):
-    return appresolve._extract_id(app_info[1])
+    return appresolve._extract_id(app_info)
 
 def __db_process_post(payload,conn,domain,killword):
  _log_payload(payload)
