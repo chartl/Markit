@@ -25,6 +25,7 @@
 		4D7107BF1808B709003CCC3A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D71079A1808B709003CCC3A /* CoreData.framework */; };
 		4D7107C71808B70A003CCC3A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D7107C51808B709003CCC3A /* InfoPlist.strings */; };
 		4D7107C91808B70A003CCC3A /* MarkitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D7107C81808B70A003CCC3A /* MarkitTests.m */; };
+		4DA08376180A74960074D676 /* MarkitApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA08375180A74960074D676 /* MarkitApp.m */; };
 		9B0EFBDC180A23C300349063 /* AppData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EFBDB180A23C300349063 /* AppData.m */; };
 		9B9C60C51808C18E00A762E0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9C60C41808C18E00A762E0 /* CFNetwork.framework */; };
 		9B9C60C71808C19700A762E0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9C60C61808C19700A762E0 /* SystemConfiguration.framework */; };
@@ -66,12 +67,10 @@
 		4D7107C41808B709003CCC3A /* MarkitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MarkitTests-Info.plist"; sourceTree = "<group>"; };
 		4D7107C61808B70A003CCC3A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4D7107C81808B70A003CCC3A /* MarkitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarkitTests.m; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		4DC0821F180A62C5004E0DBE /* MarkitApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarkitApp.h; sourceTree = "<group>"; };
-=======
+		4DA08374180A74960074D676 /* MarkitApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkitApp.h; sourceTree = "<group>"; };
+		4DA08375180A74960074D676 /* MarkitApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkitApp.m; sourceTree = "<group>"; };
 		9B0EFBDA180A23C300349063 /* AppData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppData.h; sourceTree = "<group>"; };
 		9B0EFBDB180A23C300349063 /* AppData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppData.m; sourceTree = "<group>"; };
->>>>>>> 242c9de6ef6ec2fccad97af9a09da45c07f88468
 		9B9C60C41808C18E00A762E0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		9B9C60C61808C19700A762E0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9B9C60C81808C1A000A762E0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -147,6 +146,8 @@
 		4D71079C1808B709003CCC3A /* Markit */ = {
 			isa = PBXGroup;
 			children = (
+				4DA08374180A74960074D676 /* MarkitApp.h */,
+				4DA08375180A74960074D676 /* MarkitApp.m */,
 				4D7107A51808B709003CCC3A /* AppDelegate.h */,
 				4D7107A61808B709003CCC3A /* AppDelegate.m */,
 				4D7107A81808B709003CCC3A /* Main.storyboard */,
@@ -154,7 +155,6 @@
 				4D7107AF1808B709003CCC3A /* MasterViewController.m */,
 				4D7107B11808B709003CCC3A /* DetailViewController.h */,
 				4D7107B21808B709003CCC3A /* DetailViewController.m */,
-				4DC0821F180A62C5004E0DBE /* MarkitApp.h */,
 				4D7107B41808B709003CCC3A /* Images.xcassets */,
 				4D7107AB1808B709003CCC3A /* Markit.xcdatamodeld */,
 				4D71079D1808B709003CCC3A /* Supporting Files */,
@@ -304,6 +304,7 @@
 				4D7107A71808B709003CCC3A /* AppDelegate.m in Sources */,
 				9B0EFBDC180A23C300349063 /* AppData.m in Sources */,
 				4D7107A31808B709003CCC3A /* main.m in Sources */,
+				4DA08376180A74960074D676 /* MarkitApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
