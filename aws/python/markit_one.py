@@ -49,7 +49,7 @@ def _serve_db(env,start_response):
     elif ( env['REQUEST_METHOD'] == 'GET' ):
         body= _serve_db_get(env,start_response)
     if ( not body ):
-   	start_response('401 Bad request',[('Content-Type','text/html')])
+   	    start_response('401 Bad request',[('Content-Type','text/html')])
     print body
     return body
 
@@ -95,7 +95,7 @@ def _lookup_bookmarks(query):
     user_apps = eval(str(user_record['apps']))
     resolved = []
     for app in eval(user_apps):
-        resolved_app = appresolve.resolve(app)
+        resolved_app = appresolve._lookup_info(app)
         # resolved_app is the id, name, description, and icon; return everything but the description
         if resolved_app:
          resolved.append((resolved_app[0],resolved_app[1],resolved_app[3]))
@@ -103,15 +103,16 @@ def _lookup_bookmarks(query):
 
 def _serve_db_post(env,start_response):
  global db_con,db_domain,db_kill
- start_response('204 No Content',[('Content-Type','text/html')])
- response_body = []
- if ( env['REQUEST_METHOD'] == 'POST' ):
-  try:
+ try:
    _post_size = int(env['CONTENT_LENGTH']) if env['CONTENT_LENGTH'] != '' else 0
    _post_body = env['wsgi.input'].read(_post_size)
-  except TypeError,ValueError:
+ except TypeError,ValueError:
    _post_body = '0'
-  __db_process_post(_post_body,db_con,db_domain,db_kill)
+ response_body = __db_process_post(_post_body,db_con,db_domain,db_kill)
+ if not response_body:
+    start_response('204 No Content',[('Content-Type','text/html')])
+ else:
+    start_response('406 Not Acceptable',[('Content-Type','text/plain')])
  return response_body
 
 def _log_payload(payload):
@@ -119,14 +120,14 @@ def _log_payload(payload):
   print(item)
 
 def _init_user(db,username,meta_info=None):
-    default_data = { 'username':username,'signup_date':str(datetime.date.today()),'apps':{'whatever':{'app_name':'markit','app_url':'whatever','app_number':1,'app_id':'whatever'}}}
+    default_data = { 'username':username,'signup_date':str(datetime.date.today()),'apps':'' }
     if meta_info:
         for meta_key in meta_info:
             default_data[meta_key]=meta_info[meta_key]
     db.put_attributes(username,default_data)
 
-def _parse_app(app_info,num=1):
-    return {'app_name':app_info[0],'app_url':app_info[1],'app_number':num,'app_id':app_info[1]} # for now identify apps based on iTunes URL
+def _parse_app(app_info):
+    return appresolve._extract_id(app_info[1])
 
 def __db_process_post(payload,conn,domain,killword):
  _log_payload(payload)
@@ -134,7 +135,9 @@ def __db_process_post(payload,conn,domain,killword):
   return
  items = payload.split(",")
  user = items.pop(0)
- app = _parse_app(items)
+ app = _parse_app(items[0])
+ if not app:
+     return ["Invalid app url: "+items[0]]
  user_record = domain.get_item(user)
  if not user_record:
   try:
@@ -147,13 +150,10 @@ def __db_process_post(payload,conn,domain,killword):
    print(errorText)
    raise AssertionError(repr(e))
   
- user_apps = eval(str(user_record['apps']))
- # now to add a new app, all the other apps need their numbers incremented
- for existing_app in user_apps:
-     user_apps[existing_app]['app_number']+=1
- # now add the new app
- user_apps[app['app_id']]=app
- user_record['apps'] = user_apps
+ user_apps = str(user_record['apps']).split(",")
+ if ( app not in set(user_apps) ):
+    user_apps.append(app)
+ user_record['apps'] = ",".join(user_apps)
  user_record.save()
  print(domain.get_item(user,consistent_read=True))
  
