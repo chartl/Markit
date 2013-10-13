@@ -20,7 +20,7 @@
 @property (strong) NSMutableArray *receivedData;
 
 
-NSMutableArray *getBookmarks(NSDictionary* options);
+- (NSMutableArray *)getBookmarks;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

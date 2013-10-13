@@ -104,6 +104,7 @@
 		4D7107881808B709003CCC3A = {
 			isa = PBXGroup;
 			children = (
+				9B0EFBD9180A239C00349063 /* App Data */,
 				4D71079C1808B709003CCC3A /* Markit */,
 				4D7107C21808B709003CCC3A /* MarkitTests */,
 				4D7107931808B709003CCC3A /* Frameworks */,
@@ -180,6 +181,14 @@
 				4D7107C51808B709003CCC3A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9B0EFBD9180A239C00349063 /* App Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "App Data";
+			path = Markit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
