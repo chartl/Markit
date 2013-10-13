@@ -92,9 +92,9 @@ def _lookup_bookmarks(query):
     # for each url stored in the database, resolve it and send the string back
     username = query
     user_record = db_domain.get_item(username,consistent_read=True)
-    user_apps = eval(str(user_record['apps']))
+    user_apps = str(user_record['apps']).split(",")
     resolved = []
-    for app in eval(user_apps):
+    for app in user_apps:
         resolved_app = appresolve._lookup_info(app)
         # resolved_app is the id, name, description, and icon; return everything but the description
         if resolved_app:
