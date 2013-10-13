@@ -67,6 +67,8 @@ def _serve_db_get(env,start_response):
     else:
         start_response('406 Not Acceptable',[('Content-Type','text/plain')])
         retVal = ["Error: Invalid query "+env['QUERY_STRING']]
+    #retVal = map(lambda q: str(q[0])+'='+str(q[1]),h)
+    #retVal = DEFAULT_GET_RESPONSE_DATA
     return retVal
 
 def _validate_query(query):
