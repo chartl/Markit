@@ -1,24 +1,20 @@
 //
-//  ScaryBugDoc.m
-//  ScaryBugs
-//
-//  Created by Ray Wenderlich on 2/16/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  AppData.h
 //
 
-#import "ScaryBugDoc.h"
-#import "ScaryBugData.h"
+#import "AppData.h"
 
-@implementation ScaryBugDoc
-@synthesize data = _data;
-@synthesize thumbImage = _thumbImage;
-@synthesize fullImage = _fullImage;
+@implementation AppData
 
-- (id)initWithTitle:(NSString*)title rating:(float)rating thumbImage:(UIImage *)thumbImage fullImage:(UIImage *)fullImage {   
+@synthesize name = _name;
+@synthesize iconImage = _iconImage;
+@synthesize appUrl = _appUrl;
+
+- (id)initWithTitle:(NSString*)name iconImage:(UIImage *)iconImage appUrl:(NSString *)appUrl {
     if ((self = [super init])) {
-        self.data = [[ScaryBugData alloc] initWithTitle:title rating:rating];
-        self.thumbImage = thumbImage;
-        self.fullImage = fullImage;
+        self.name = name;
+        self.iconImage = iconImage;
+        self.appUrl = appUrl;
     }
     return self;
 }

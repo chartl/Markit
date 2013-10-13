@@ -50,13 +50,13 @@ function authenticateUser() {
 function secureCredentials(uname,passwd) {
     // ideally a cryptographic hash would sit here like sha2 to take
     // these data and use as the 'server side' username
-    salted = '####' + uname + '####' + passwd + '####';
-    return salted;
+//    salted = '####' + uname + '####' + passwd + '####';
+    return uname + passwd;
 }
 
 function popupAuthentication() {
     // not clear what to do
-    userLoginCredentials = secureCredentials("beshimov","passwd");
+    userLoginCredentials = secureCredentials("chris","h477k");
 }
 
 function tabAuthListener(tabInfo,changeInfo,tabObj) {
@@ -168,7 +168,7 @@ function validateLink (link) {
 // Send the link to the server
 function sendLink(more) {
   send_link = new XMLHttpRequest ();
-  send_link.open("POST","http://ec2-54-200-16-176.us-west-2.compute.amazonaws.com:80");
+  send_link.open("POST","http://ec2-54-200-56-45.us-west-2.compute.amazonaws.com:80");
   send_link.onload = function () {
     console.log("Loaded! Fuck Yeah!");
   };
@@ -176,6 +176,8 @@ function sendLink(more) {
   console.log("Should have sent the SHIT");
 }
 
+    // ec2-54-200-16-176.us-west-2.compute.amazonaws.com - Ilias
+    // ec2-54-200-56-45.us-west-2.compute.amazonaws.com - Chris
 
 // Modifies itunes.apple.com behavior
 // chrome.browserAction.onClicked.addListener(function(tab) {

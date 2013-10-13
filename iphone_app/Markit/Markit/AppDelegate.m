@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Foundation/Foundation.h>
+#import "AppData.h"
 
 #import "MasterViewController.h"
 
@@ -32,7 +33,7 @@
     if (theRequest == nil) {
         theRequest = [NSMutableURLRequest
                        requestWithURL:[NSURL
-                        URLWithString:@"http://ec2-54-200-16-176.us-west-2.compute.amazonaws.com:80?user=beshim&pass=foo"]
+                        URLWithString:@"http://ec2-54-200-56-45.us-west-2.compute.amazonaws.com:80/?chrish477k"]
                           cachePolicy:NSURLRequestUseProtocolCachePolicy
                       timeoutInterval:60.0];
     };
@@ -87,13 +88,19 @@
     return myArray;
 }
 
+- (BOOL)application:(UIApplication*)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.bookmarks = self.getBookmarks;
+    return YES;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     MasterViewController *controller = (MasterViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
-    controller.bookmarks = self.getBookmarks;
+    controller.bookmarks = self.bookmarks;
     
     return YES;
 }
@@ -261,22 +268,45 @@
     NSLog(@"data is: %@!", data);
     NSLog(@"didReceiveData worked!");
     NSString *response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"response is: %@!", response);
+    NSLog(@"Response is: %@!", response);
     
     
     // Response parsing into individual app strings
     // This will need to be in the future made into separate function
-    NSString *testString = @"(app_name1,1111111,http://app_name1.com),(app_name2,2222222,http://app_name2.com)";
+    NSString *testString = @"(656620224,Tiny Thief,http://a1698.phobos.apple.com/us/r30/Purple/v4/c9/10/e8/c910e87f-a9bf-5865-8f6e-4b9c2a0eddce/Icon57.png),(389801252,Instagram,http://a1474.phobos.apple.com/us/r30/Purple6/v4/25/80/64/25806490-992c-7664-03d7-f0db2d6abb8a/Icon-57.png),(447188370,Snapchat,http://a615.phobos.apple.com/us/r30/Purple/v4/ba/b3/41/bab34176-1826-a846-ac23-e578a8f18c47/Icon.png),(572960717,The Chihuly App,http://a1237.phobos.apple.com/us/r1000/096/Purple/v4/77/03/37/770337cb-1e40-85a3-52ec-8181086a98c5/Icon.png),(494017300,Spider Swiper by Mentos,http://a494.phobos.apple.com/us/r1000/115/Purple/1d/b5/35/mzi.dxxtdcdb.png)";
     NSLog(@"String is: %@", testString);
     
-    NSRange openBracket = [testString rangeOfString:@"("];
-    NSRange closeBracket = [testString rangeOfString:@")"];
-    NSRange numberRange = NSMakeRange(openBracket.location + 1, closeBracket.location - openBracket.location - 1);
-    NSString *numberString = [testString substringWithRange:numberRange];
-    NSLog(@"Substring is: %@", numberString);
-    
-    NSString *remainder = [testString substringFromIndex:closeBracket.location + 2];
-    NSLog(@"Remainder is: %@", remainder);
+    while (response.length > 0) {
+        
+        NSRange openBracket = [response rangeOfString:@"("];
+        NSRange closeBracket = [response rangeOfString:@")"];
+        NSRange numberRange = NSMakeRange(openBracket.location + 1, closeBracket.location - openBracket.location - 1);
+        NSString *numberString = [response substringWithRange:numberRange];
+        NSLog(@"Substring is: %@", numberString);
+        NSArray *items = [numberString componentsSeparatedByString:@","];
+        NSLog(@"Item is: %@", items);
+        
+        NSString *name = [items objectAtIndex: 1];
+        NSLog(@"Name is: %@", name);
+        
+        UIImage *image = [items objectAtIndex: 2];
+        NSLog(@"Image is: %@", image);
+        
+        NSString *url = [items objectAtIndex: 0];
+        NSLog(@"ID is: %@", url);
+        
+        NSString *remainder = [response substringFromIndex:closeBracket.location + 1];
+        NSLog(@"Remainder is: %@", remainder);
+        
+        AppData *app = [[AppData alloc] initWithTitle:name iconImage:image appUrl:url];
+        NSLog(@"AppData is: %@", app);
+        
+//        NSMutableArray* appArray;
+//        appArray = ([NSMutableArray arrayWithObject:app atIndex:i]);
+//        NSLog(@"appArray is: %@", appArray);
+        response = remainder;
+        
+    }
     
 }
 
