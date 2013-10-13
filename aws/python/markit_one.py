@@ -48,7 +48,7 @@ def _serve_db(env,start_response):
         body= _serve_db_post(env,start_response)
     elif ( env['REQUEST_METHOD'] == 'GET' ):
         body= _serve_db_get(env,start_response)
-    if ( not body ):
+    else:
    	    start_response('401 Bad request',[('Content-Type','text/html')])
     print body
     return body
