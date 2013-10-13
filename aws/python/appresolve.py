@@ -40,7 +40,7 @@ def _extract_id(storeURL,_tryCount=0):
             if _str.startswith("http") or _str.startswith("itms"):
                 return _extract_id(_toEndOfURL(_str),_tryCount+1)
         return None
-    id_split_token = "id=" if storeURL.find("id=") > -1 else "id"
+    id_split_token = "id=" if storeURL.find("id=") > -1 else "/id"
     # decide which of the ending tokens comes first
     id_plus_suffix = storeURL.split(id_split_token)[1]
     qloc = id_plus_suffix.find("?")
