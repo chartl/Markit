@@ -98,7 +98,7 @@ def _lookup_bookmarks(query):
         resolved_app = appresolve._lookup_info(app)
         # resolved_app is the id, name, description, and icon; return everything but the description
         if resolved_app:
-         resolved.append("(%s,%s,%s)" % (resolved_app[0],resolved_app[1],resolved_app[3]))
+         resolved.append("(%s,%s,%s)" % (resolved_app[0],resolved_app[1].replace(",",""),resolved_app[3]))
     return ",".join(resolved)
 
 def _serve_db_post(env,start_response):
