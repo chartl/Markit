@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AppData.h"
 #import <CoreData/CoreData.h>
 
 @interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
@@ -15,5 +15,6 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong) NSMutableArray *bookmarks;
+@property (strong) NSMutableArray *apps;
 
 @end

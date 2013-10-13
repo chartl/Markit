@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppData.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -18,6 +19,7 @@
 @property (strong) NSURLRequest *theRequest;
 @property (strong) NSURLConnection *theConnection;
 @property (strong) NSMutableArray *receivedData;
+@property (strong) NSMutableArray *bookmarks;
 
 
 - (NSMutableArray *)getBookmarks;

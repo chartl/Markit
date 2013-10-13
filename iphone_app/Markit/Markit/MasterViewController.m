@@ -7,7 +7,7 @@
 //
 
 #import "MasterViewController.h"
-
+#import "AppData.h"
 #import "DetailViewController.h"
 
 @interface MasterViewController ()
@@ -69,14 +69,26 @@
 {
     //id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     //return [sectionInfo numberOfObjects];
-    return [self.bookmarks count];
+    return 5; //[self.bookmarks count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /// TEMP HARD CODING OF IMAGE
+    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: @"http://a1698.phobos.apple.com/us/r30/Purple/v4/c9/10/e8/c910e87f-a9bf-5865-8f6e-4b9c2a0eddce/Icon57.png"]];
+    UIImage *testImage = [UIImage imageWithData: imageData];
+    /// END OF HARD CODING OF IMAGE
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     //[self configureCell:cell atIndexPath:indexPath];
-    cell.textLabel.text = [self.bookmarks objectAtIndex:indexPath.row];
+    AppData *app = [self.apps objectAtIndex:indexPath.row];
+    NSLog(@"Name is: %@", app.name);
+    NSLog(@"Image is: %@", app.iconImage);
+    cell.textLabel.text = @"Tiny Thief";
+    cell.imageView.image = testImage;
+    
+//    cell.textLabel.text = [self.bookmarks objectAtIndex:indexPath.row];
+// (656620224,Tiny Thief,http://a1698.phobos.apple.com/us/r30/Purple/v4/c9/10/e8/c910e87f-a9bf-5865-8f6e-4b9c2a0eddce/Icon57.png),(389801252,Instagram,http://a1474.phobos.apple.com/us/r30/Purple6/v4/25/80/64/25806490-992c-7664-03d7-f0db2d6abb8a/Icon-57.png),(447188370,Snapchat,http://a615.phobos.apple.com/us/r30/Purple/v4/ba/b3/41/bab34176-1826-a846-ac23-e578a8f18c47/Icon.png),(572960717,The Chihuly App,http://a1237.phobos.apple.com/us/r1000/096/Purple/v4/77/03/37/770337cb-1e40-85a3-52ec-8181086a98c5/Icon.png),(494017300,Spider Swiper by Mentos,http://a494.phobos.apple.com/us/r1000/115/Purple/1d/b5/35/mzi.dxxtdcdb.png)
     return cell;
 }
 
@@ -107,16 +119,26 @@
     // The table view should not be re-orderable.
     return NO;
 }
-
+/// -- TEST CODE
+/// -- Test for changing behaviour of list item click behaviour
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setDetailItem:object];
+        NSString *testUrl = @"https://itunes.apple.com/us/app/snapchat/id447188370?mt=8&ign-mpt=uo%3D2";
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:testUrl]];
     }
 }
-
+// https://itunes.apple.com/us/app/snapchat/id447188370?mt=8&ign-mpt=uo%3D2
+/// --Original Code
+// - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+// {
+//    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+//        [[segue destinationViewController] setDetailItem:object];
+//    }
+// }
+/// -- END
 #pragma mark - Fetched results controller
 
 - (NSFetchedResultsController *)fetchedResultsController
