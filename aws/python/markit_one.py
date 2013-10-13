@@ -154,6 +154,7 @@ def __db_process_post(payload,conn,domain,killword):
  user_record['apps'] = ",".join(user_apps)
  user_record.save()
  print(domain.get_item(user,consistent_read=True))
+ return []
  
 if __name__ == "__main__":
  global db_con,db_domain,db_kill
