@@ -24,6 +24,8 @@ def _extract_id(storeURL,_tryCount=0):
         324906251
         >>> _extract_id("http://hastrk1.com/serve?action=click&publisher_id=7280&site_id=13208&offer_id=249864")
         622768071
+        >>> _extract_id("https://itunes.apple.com/us/app/facebook-messenger/id454638411?mt=8&ign-mpt=uo%3D2")
+        454638411
     '''
     print(storeURL)
     prefix = storeURL.split("//")[1].split(".")[0]
