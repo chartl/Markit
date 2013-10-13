@@ -60,7 +60,7 @@ def _serve_db_get(env,start_response):
     except TypeError,ValueError:
         _post_body = '0'
     ## now process the body
-    print env['QUERY_STRING']
+    print "Query=%s" % (env['QUERY_STRING'])
     do_lookup = _validate_query(env['QUERY_STRING'])
     if do_lookup:
         start_response('200 OK',[('Content-Type','text/plain')])
